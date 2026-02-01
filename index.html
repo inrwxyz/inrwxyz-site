@@ -2,128 +2,133 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>INRWXYZ Panel</title>
+<title>inrwxyz Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{box-sizing:border-box}
-
-body{
+*{
   margin:0;
+  padding:0;
+  box-sizing:border-box;
   font-family: Consolas, monospace;
-  background:url("bg.png") center/cover no-repeat fixed;
-  color:#fff;
 }
-
-.overlay{
+body{
   min-height:100vh;
-  background:rgba(0,0,0,0.8);
+  background:
+    radial-gradient(circle at center, rgba(0,255,200,0.15), transparent 60%),
+    url("bg.png") center/contain no-repeat,
+    #000;
+  color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
 }
-
 .card{
-  width:100%;
-  max-width:420px;
-  padding:28px;
+  background:rgba(0,0,0,0.75);
   border:1px solid #0ff;
-  background:#000;
-  box-shadow:0 0 40px rgba(0,255,255,.35);
-}
-
-h1{
+  padding:28px;
+  width:92%;
+  max-width:520px;
   text-align:center;
-  margin:0 0 10px;
+  box-shadow:0 0 40px rgba(0,255,255,0.15);
+}
+h1{
+  font-size:34px;
   letter-spacing:2px;
 }
-
-.subtitle{
-  text-align:center;
-  font-size:14px;
-  opacity:.8;
-  margin-bottom:24px;
+small{
+  opacity:0.7;
 }
-
-select,button{
+.section{
+  margin-top:22px;
+  text-align:left;
+}
+label{
+  display:block;
+  margin-bottom:6px;
+  opacity:0.8;
+}
+select{
   width:100%;
-  padding:12px;
-  margin-top:12px;
+  padding:10px;
   background:#000;
-  color:#fff;
+  color:#0ff;
   border:1px solid #0ff;
-  font-size:15px;
 }
-
 button{
   margin-top:22px;
-  font-weight:bold;
-  letter-spacing:1px;
+  width:100%;
+  padding:14px;
+  background:#000;
+  color:#0ff;
+  border:1px solid #0ff;
+  font-size:16px;
+  cursor:pointer;
 }
-
 button:hover{
   background:#0ff;
   color:#000;
-  cursor:pointer;
 }
-
-.info{
-  margin-top:18px;
-  font-size:12px;
-  opacity:.7;
-  text-align:center;
-}
-
 .footer{
-  text-align:center;
   margin-top:18px;
-  font-size:11px;
-  opacity:.55;
+  font-size:13px;
+  opacity:0.6;
+}
+.tag{
+  margin-top:12px;
+  font-size:14px;
+  opacity:0.85;
 }
 </style>
 </head>
 
 <body>
 
-<div class="overlay">
-  <div class="card">
+<div class="card">
+  <h1>INRWXYZ</h1>
+  <small>Lightweight Minecraft Server Panel</small>
 
-    <h1>INRWXYZ</h1>
-    <div class="subtitle">
-      Lightweight Minecraft Paper Server Panel
-    </div>
+  <div class="tag">
+    Paper • Fast • Local • Beginner Friendly
+  </div>
 
-    <!-- ONLY PAPER / ONLY VERSION -->
-    <select id="version" onchange="updateLink()">
-      <option value="1.22.11">Paper 1.22.11</option>
-      <!-- future versions add here -->
+  <div class="section">
+    <label>Server Software</label>
+    <select disabled>
+      <option>Paper (only)</option>
     </select>
+  </div>
 
-    <a id="download" href="#">
-      <button>DOWNLOAD PANEL</button>
-    </a>
+  <div class="section">
+    <label>Minecraft Version</label>
+    <select id="version">
+      <option value="1.21.11">1.21.11 (Stable)</option>
+      <option value="1.22.11">1.22.11 (Preview)</option>
+    </select>
+  </div>
 
-    <div class="info">
-      Works offline • No cloud • Localhost only
-    </div>
+  <button onclick="downloadPanel()">
+    ⬇ Download inrwxyz Panel
+  </button>
 
-    <div class="footer">
-      © 2026 inrwxyz • Paper only
-    </div>
-
+  <div class="footer">
+    Default login → admin / password<br>
+    Runs locally • No cloud • Full control
   </div>
 </div>
 
 <script>
-const links = {
-  "1.22.11":
-    "https://github.com/inrwxyz/inrwxyz-panel/releases/download/v1.22.11/paper-1.22.11.zip"
-};
-
-function updateLink(){
+function downloadPanel(){
   const v = document.getElementById("version").value;
-  document.getElementById("download").href = links[v];
+
+  if(v === "1.21.11"){
+    window.location.href =
+      "https://github.com/inrwxyz/inrwxyz-panel/releases/download/v1.0/server.panel.1.21.11.zip";
+  }
+  if(v === "1.22.11"){
+    alert("1.22.11 build coming soon");
+  }
 }
-updateLink();
 </script>
 
 </body>
