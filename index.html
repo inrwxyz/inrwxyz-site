@@ -1,78 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>inrwxyz</title>
+<meta charset="UTF-8">
+<title>INRWXYZ Panel</title>
 
 <style>
+*{box-sizing:border-box}
+
 body{
   margin:0;
-  height:100vh;
-  background:
-    linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
-    url("bg.png") center/cover no-repeat;
   font-family: Consolas, monospace;
-  color:white;
+  background:url("bg.png") center/cover no-repeat fixed;
+  color:#fff;
+}
+
+.overlay{
+  min-height:100vh;
+  background:rgba(0,0,0,0.8);
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
-.box{
-  border:1px solid white;
-  padding:30px;
-  width:420px;
-  background:rgba(0,0,0,0.6);
+.card{
+  width:100%;
+  max-width:420px;
+  padding:28px;
+  border:1px solid #0ff;
+  background:#000;
+  box-shadow:0 0 40px rgba(0,255,255,.35);
+}
+
+h1{
+  text-align:center;
+  margin:0 0 10px;
+  letter-spacing:2px;
+}
+
+.subtitle{
+  text-align:center;
+  font-size:14px;
+  opacity:.8;
+  margin-bottom:24px;
+}
+
+select,button{
+  width:100%;
+  padding:12px;
+  margin-top:12px;
+  background:#000;
+  color:#fff;
+  border:1px solid #0ff;
+  font-size:15px;
+}
+
+button{
+  margin-top:22px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+button:hover{
+  background:#0ff;
+  color:#000;
+  cursor:pointer;
+}
+
+.info{
+  margin-top:18px;
+  font-size:12px;
+  opacity:.7;
   text-align:center;
 }
 
-a{
-  display:block;
-  margin-top:15px;
-  padding:10px;
-  border:1px solid white;
-  color:white;
-  text-decoration:none;
-}
-
-a:hover{
-  background:white;
-  color:black;
+.footer{
+  text-align:center;
+  margin-top:18px;
+  font-size:11px;
+  opacity:.55;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box">
-  <h2>inrwxyz</h2>
-  <p>
-    Lightweight Minecraft Server Panel<br>
-    Version: 1.21.11
-  </p>
+<div class="overlay">
+  <div class="card">
 
-  <a 
-  href="https://github.com/inrwxyz/inrwxyz-panel/releases/download/v1.0/server.panel.1.21.11.zip"
-  download
-  style="
-    display:inline-block;
-    padding:12px 20px;
-    border:1px solid #fff;
-    color:#fff;
-    background:#000;
-    text-decoration:none;
-    font-family:Consolas;
-  ">
-⬇ Download INRWXYZ Panel (v1.21.11)
-</a>
+    <h1>INRWXYZ</h1>
+    <div class="subtitle">
+      Lightweight Minecraft Paper Server Panel
+    </div>
 
+    <!-- ONLY PAPER / ONLY VERSION -->
+    <select id="version" onchange="updateLink()">
+      <option value="1.22.11">Paper 1.22.11</option>
+      <!-- future versions add here -->
+    </select>
 
+    <a id="download" href="#">
+      <button>DOWNLOAD PANEL</button>
+    </a>
 
-  <p style="font-size:12px;opacity:.6">
-    Default login: admin / password
-  </p>
+    <div class="info">
+      Works offline • No cloud • Localhost only
+    </div>
+
+    <div class="footer">
+      © 2026 inrwxyz • Paper only
+    </div>
+
+  </div>
 </div>
+
+<script>
+const links = {
+  "1.22.11":
+    "https://github.com/inrwxyz/inrwxyz-panel/releases/download/v1.22.11/paper-1.22.11.zip"
+};
+
+function updateLink(){
+  const v = document.getElementById("version").value;
+  document.getElementById("download").href = links[v];
+}
+updateLink();
+</script>
 
 </body>
 </html>
-
-
